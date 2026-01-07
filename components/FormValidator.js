@@ -8,8 +8,13 @@ class FormValidator {
     this._formElement = formElement;
   }
 
-  _showInputError(formElement, inputElement, errorMessage) {
-    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  _setEventListeners() {
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+  }
+
+  _showInputError(inputElement, errorMessage) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     if (errorElement) {
       errorElement.classList.add(this._errorClass);
@@ -17,8 +22,8 @@ class FormValidator {
     }
   }
 
-  _hideInputError(formElement, inputElement) {
-    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     if (errorElement) {
       errorElement.classList.remove(this._errorClass);
@@ -28,20 +33,20 @@ class FormValidator {
 
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(this._formElement, inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(this._formElement, inputElement);
+      this._hideInputError(inputElement);
     }
   }
 
-  _hasInvalidInput(inputList) {
-    return inputList.some((input) => !input.validity.valid);
+  _hasInvalidInput() {
+    return this._inputList.some((input) => !input.validity.valid);
   }
 
-  _toggleButtonState(inputList) {
+  _toggleButtonState() {
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     if (!buttonElement) return;
-    if (this._hasInvalidInput(inputList)) {
+    if (this._hasInvalidInput()) {
       buttonElement.classList.add(this._inactiveButtonClass);
       buttonElement.disabled = true;
     } else {

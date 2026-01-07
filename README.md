@@ -17,10 +17,11 @@ Store tasks with a title, optional description, a due date, and a completed flag
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+Stack and approach used:  ES modules, ES6 classes/OOP, BEM, custom FormValidator, UUID via CDN, Live Server, GitHub Pages deployment
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
+https://jarrynhallare.github.io/se_project_todo-app/
 
