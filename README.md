@@ -23,5 +23,4 @@ Stack and approach used:  ES modules, ES6 classes/OOP, BEM, custom FormValidator
 
 This project is deployed on GitHub Pages:
 
-https://jarrynhallare.github.io/se_project_todo-app/
 
