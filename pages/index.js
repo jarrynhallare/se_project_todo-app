@@ -67,6 +67,3 @@ initialTodos.forEach((item) => {
   renderTodo(item);
 });
 
-
-const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
-newTodoValidator.enableValidation();

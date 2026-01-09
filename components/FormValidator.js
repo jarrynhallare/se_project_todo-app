@@ -50,18 +50,12 @@ _enableSubmitButton = () => {
 };
 
   _toggleButtonState() {
-    this._buttonElement = this._formElement.querySelector(
-      this._submitButtonSelector,
-    );
-    if (!this._buttonElement) return;
-    if (this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.disabled = true;
-    } else {
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
-      this._buttonElement.disabled = false;
-    }
+  if (this._hasInvalidInput()) {
+    this._disableSubmitButton();
+  } else {
+    this._enableSubmitButton();
   }
+}
 
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
@@ -85,12 +79,10 @@ _enableSubmitButton = () => {
 
   resetValidation() {
     this._formElement.reset();
-    this._inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement);
-    }); 
-
+    this._disableSubmitButton(); 
     this._toggleButtonState();
 }
 }
+
 
 export default FormValidator;
