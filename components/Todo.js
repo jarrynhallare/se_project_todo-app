@@ -1,7 +1,9 @@
 class Todo {
-    constructor(data, selector) {
+    constructor(data, selector, handleTodoCheckboxChange, handleTodoDeletion) {
         this._data = data;
         this._templateElement = document.querySelector(selector);
+        this._handleTodoCheckboxChange = handleTodoCheckboxChange;
+        this._handleTodoDeletion = handleTodoDeletion;
     }
 
     _generateDueDate() {
@@ -18,10 +20,13 @@ class Todo {
         this._todoDeleteBtn.addEventListener("click", () => {
         this._todoElement.remove();
         this._todoElement = null;
+        this._handleTodoDeletion(this._data.completed);
         });
 
         this._todoCheckboxEl.addEventListener("change", () => {
            this._data.completed = !this._data.completed;
+           this._handleTodoCheckboxChange(this._data.completed);
+           this._todoLabel.classList.toggle("todo__label_completed");
         }); 
     }
 
